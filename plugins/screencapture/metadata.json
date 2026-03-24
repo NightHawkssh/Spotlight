@@ -1,0 +1,8 @@
+{
+    "authors": ["@anthropic"],
+    "description": "Take screenshots using system tools",
+    "license": "MIT",
+    "maintainers": ["@anthropic"],
+    "name": "Screen Capture",
+    "url": "https://github.com/anthropic/spotlight-plugin-screencapture"
+}

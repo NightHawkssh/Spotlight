@@ -1,0 +1,8 @@
+{
+    "authors": ["@anthropic"],
+    "description": "Pick and convert colors between hex, RGB, and HSL",
+    "license": "MIT",
+    "maintainers": ["@anthropic"],
+    "name": "Color Picker",
+    "url": "https://github.com/anthropic/spotlight-plugin-colorpicker"
+}

@@ -1,0 +1,8 @@
+{
+    "authors": ["@anthropic"],
+    "description": "Search and copy emojis by name",
+    "license": "MIT",
+    "maintainers": ["@anthropic"],
+    "name": "Emoji Search",
+    "url": "https://github.com/anthropic/spotlight-plugin-emoji"
+}

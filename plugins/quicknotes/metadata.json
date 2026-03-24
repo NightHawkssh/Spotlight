@@ -1,0 +1,8 @@
+{
+    "authors": ["@anthropic"],
+    "description": "Quickly create, view, and manage notes",
+    "license": "MIT",
+    "maintainers": ["@anthropic"],
+    "name": "Quick Notes",
+    "url": "https://github.com/anthropic/spotlight-plugin-quicknotes"
+}

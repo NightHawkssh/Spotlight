@@ -1,0 +1,8 @@
+{
+    "authors": ["@NightHawkssh"],
+    "description": "AI Chat powered by Claude and OpenAI",
+    "license": "MIT",
+    "maintainers": ["@NightHawkssh"],
+    "name": "AI Chat",
+    "url": "https://github.com/NightHawkssh/Spotlight"
+}

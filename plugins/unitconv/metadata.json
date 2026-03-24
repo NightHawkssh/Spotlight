@@ -1,0 +1,8 @@
+{
+    "authors": ["@anthropic"],
+    "description": "Convert between units of length, weight, temperature, data, and time",
+    "license": "MIT",
+    "maintainers": ["@anthropic"],
+    "name": "Unit Converter",
+    "url": "https://github.com/anthropic/spotlight-plugin-unitconv"
+}

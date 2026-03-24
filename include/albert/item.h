@@ -59,6 +59,27 @@ public:
     /// The activation behavior.
     ///
     bool hide_on_activation = true;
+
+    ///
+    /// The action section name for grouped display.
+    ///
+    /// Actions with the same section are grouped together under a header.
+    /// Empty string means default (ungrouped) section.
+    ///
+    QString section;
+
+    ///
+    /// The keyboard shortcut string (e.g., "Ctrl+C").
+    ///
+    /// Displayed as a badge in the action panel. When the action panel is open,
+    /// pressing this shortcut activates the action directly.
+    ///
+    QString shortcut;
+
+    ///
+    /// Priority for sorting within a section. Higher values appear first.
+    ///
+    int priority = 0;
 };
 
 

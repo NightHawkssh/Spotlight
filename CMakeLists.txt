@@ -65,6 +65,7 @@ set(LIB_PUBLIC_HEADER
     include/albert/extension.h
     include/albert/extensionplugin.h
     include/albert/fallbackhandler.h
+    include/albert/formspec.h
     include/albert/frontend.h
     include/albert/generatorqueryhandler.h
     include/albert/globalqueryhandler.h
@@ -82,6 +83,7 @@ set(LIB_PUBLIC_HEADER
     include/albert/queryresults.h
     include/albert/rankedqueryhandler.h
     include/albert/rankitem.h
+    include/albert/richitem.h
     include/albert/telemetryprovider.h
     include/albert/urlhandler.h
     include/albert/usagescoring.h
@@ -102,6 +104,7 @@ set(LIB_PUBLIC_HEADER
     include/albert/oauthconfigwidget.h
     include/albert/ratelimiter.h
     include/albert/standarditem.h
+    include/albert/standardrichitem.h
     include/albert/systemutil.h
     include/albert/timeit.h
     include/albert/widgetsutil.h
@@ -135,6 +138,7 @@ set(LIB_SRC
     src/common/extension.cpp
     src/common/item.cpp
     src/common/rankitem.cpp
+    src/common/richitem.cpp
     src/config.h.in
     src/frontend/frontend.cpp
     src/frontend/session.cpp
@@ -225,6 +229,7 @@ set(LIB_SRC
     src/util/querypreprocessing.h
     src/util/ratelimiter.cpp
     src/util/standarditem.cpp
+    src/util/standardrichitem.cpp
     src/util/systemutil.cpp
 )
 
