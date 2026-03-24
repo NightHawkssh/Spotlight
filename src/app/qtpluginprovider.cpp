@@ -35,7 +35,10 @@ QtPluginProvider::QtPluginProvider(QStringList paths)
     install_paths << "/usr/lib64/";
 #endif
     for (const QString& p : install_paths)
-        paths << QDir(p).filePath("albert");
+    {
+        paths << QDir(p).filePath("spotlight");
+        paths << QDir(p).filePath("albert");  // backward compat
+    }
 
     QStringList unique_canonical_paths;
     for (const QString& p : paths)

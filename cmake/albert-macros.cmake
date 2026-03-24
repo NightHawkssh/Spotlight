@@ -281,7 +281,7 @@ macro(albert_plugin)
 
     install(
         TARGETS ${PROJECT_NAME}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/albert
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/spotlight
     )
 
     # after add_target, uses SOURCES

@@ -8,13 +8,13 @@ set(PROJECT_VERSION 34.0.10)
 project(albert
     VERSION ${PROJECT_VERSION}
     DESCRIPTION "Keyboard launcher"
-    HOMEPAGE_URL "https://albertlauncher.github.io"
+    HOMEPAGE_URL "https://github.com/NightHawkssh/Spotlight"
     LANGUAGES CXX
 )
 if(APPLE)
     enable_language(OBJCXX)  # used by pch
 endif()
-set(PROJECT_DISPLAY_NAME "Albert")
+set(PROJECT_DISPLAY_NAME "Spotlight")
 
 # Local cmake modules (also CMake uses this in a pretty obscure way, e.g. for the plist)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
@@ -362,7 +362,7 @@ set_target_properties(${TARGET_LIB} PROPERTIES
     MACOSX_FRAMEWORK_BUNDLE_VERSION "${PROJECT_VERSION}"
     MACOSX_FRAMEWORK_IDENTIFIER "org.albertlauncher.albert.interface"
     MACOSX_FRAMEWORK_SHORT_VERSION_STRING ${PROJECT_VERSION}
-    OUTPUT_NAME "${PROJECT_NAME}"
+    OUTPUT_NAME "spotlight"
     PUBLIC_HEADER "${LIB_PUBLIC_HEADER}"
     SOVERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"  # also mach-o compat version
     # NO_SONAME true # do _not_ add. linkers other that ldd will make troubles using non relative paths
@@ -533,6 +533,9 @@ set(TARGET_APP ${CMAKE_PROJECT_NAME})
 
 add_executable(${TARGET_APP} MACOSX_BUNDLE "src/main.cpp")
 
+# Rename the output binary to "spotlight"
+set_target_properties(${TARGET_APP} PROPERTIES OUTPUT_NAME "spotlight")
+
 if (APPLE)
 
     option(BUILD_DEV_BUNDLE "Build a separate dev bundle (saves some headaches on permissions)" OFF)
@@ -574,9 +577,12 @@ if (APPLE)
 
 elseif (UNIX)
 
+    install(FILES dist/xdg/spotlight.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+    install(FILES resources/albert.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps RENAME spotlight.svg)
+    install(FILES resources/albert-tray.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps RENAME spotlight-tray.svg)
+    # Also install with original names for internal compatibility
     install(FILES dist/xdg/albert.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
     install(FILES resources/albert.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
-    install(FILES resources/albert-tray.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
 
 endif()
 
@@ -680,6 +686,29 @@ if (APPLE)
 
     configure_file("cmake/bundle-macos.cmake.in" "${PROJECT_BINARY_DIR}/bundle-macos.cmake" @ONLY)
     install(SCRIPT "${PROJECT_BINARY_DIR}/bundle-macos.cmake")
+
+    include(CPack)
+elseif (UNIX)
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_PACKAGE_NAME "spotlight")
+    set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Spotlight - A fast application launcher for Linux")
+    set(CPACK_PACKAGE_DESCRIPTION "Spotlight is a keyboard-driven productivity tool and application launcher for Linux, inspired by Raycast. Features include application launching, file search, calculator, clipboard history, snippets, and more.")
+    set(CPACK_PACKAGE_CONTACT "spotlight@localhost")
+    set(CPACK_PACKAGE_VENDOR "Spotlight")
+    set(CPACK_PACKAGE_FILE_NAME "spotlight-${PROJECT_VERSION}-${CMAKE_SYSTEM_PROCESSOR}")
+    set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE.md")
+    set(CPACK_STRIP_FILES TRUE)
+    set(CPACK_MONOLITHIC_INSTALL TRUE)
+
+    # Debian-specific settings
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Spotlight Developers <spotlight@localhost>")
+    set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
+    set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+    set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://github.com/NightHawkssh/Spotlight")
+    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS
+        "libqt6core6t64 (>= 6.6), libqt6gui6 (>= 6.6), libqt6widgets6 (>= 6.6), libqt6svg6 (>= 6.6), libqt6sql6-sqlite (>= 6.6), libqt6concurrent6 (>= 6.6), libqt6network6 (>= 6.6), libqt6statemachine6, libqalculate23, libarchive13t64")
 
     include(CPack)
 endif()

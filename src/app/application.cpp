@@ -185,7 +185,7 @@ Application::Private::Private(Application &q,
     platform::initPlatform();
 
     // Install scheme handler
-    QDesktopServices::setUrlHandler("albert", &app, "handleUrl");
+    QDesktopServices::setUrlHandler("spotlight", &app, "handleUrl");
 
     initFrontend(settings);
 
@@ -226,7 +226,7 @@ Application::Private::Private(Application &q,
 
 Application::Private::~Private()
 {
-    QDesktopServices::unsetUrlHandler("albert");
+    QDesktopServices::unsetUrlHandler("spotlight");
 
     frontend->disconnect();
     query_engine.disconnect();
@@ -600,10 +600,10 @@ int ALBERT_EXPORT run(int argc, char **argv)
     // Initialize Qt application
 
     QApplication qapp(argc, argv);
-    QApplication::setApplicationName("albert");
-    QApplication::setApplicationDisplayName("Albert");
+    QApplication::setApplicationName("spotlight");
+    QApplication::setApplicationDisplayName("Spotlight");
     QApplication::setApplicationVersion(ALBERT_VERSION_STRING);
-    QApplication::setWindowIcon(QIcon::fromTheme("albert"));
+    QApplication::setWindowIcon(QIcon::fromTheme("spotlight"));
     QApplication::setQuitOnLastWindowClosed(false);
 
 
